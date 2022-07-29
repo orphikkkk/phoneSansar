@@ -24,6 +24,10 @@ return new class extends Migration
             $table->integer("vendor");
             $table->double("average_rating",4,2)->nullable();
             $table->integer("category_id")->nullable();
+
+
+            $table->foreign('vendor')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
