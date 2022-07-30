@@ -21,7 +21,7 @@
         <div class="flex flex-wrap items-center">
             <!-- Brand -->
             <div class="flex-shrink-0 mr-5">
-                <a href="#"> <img src="/images/logoBig.png" class="h-10" height="40" alt="Brand"/> </a>
+                <a href="{{route('home')}}"> <img src="/images/logoBig.png" class="h-10" height="40" alt="Brand"/> </a>
             </div>
             <!-- Brand .//end -->
 
@@ -78,8 +78,18 @@
     <div class="container max-w-screen-xl mx-auto px-4">
         <!-- Bottom -->
         <div class="hidden lg:flex flex-1 items-center py-1">
-            <a class="px-3 py-2 rounded-md hover:bg-gray-100" href="#"> Category </a>
-            <a class="px-3 py-2 rounded-md hover:bg-gray-100" href="#"> Shop </a>
+            <a
+                @class([
+                'px-3 py-2 rounded-md hover:bg-gray-100' => !(request()->routeIs('products')),
+                'px-3 py-2 hover:bg-gray-100 border-b border-blue-600'=>(request()->routeIs('products'))
+                ])
+                href="{{route('products')}}"> Categories </a>
+            <a
+                @class([
+                'px-3 py-2 rounded-md hover:bg-gray-100' => !(request()->routeIs('products')),
+                'px-3 py-2 hover:bg-gray-100 border-b border-blue-600'=>(request()->routeIs('products'))
+                ])
+                href="{{route('products')}}"> Products </a>
             <a class="px-3 py-2 rounded-md hover:bg-gray-100" href="#"> About </a>
             <a class="px-3 py-2 rounded-md hover:bg-gray-100 text-blue-500" href="#"> Become a Seller </a>
         </div>

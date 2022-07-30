@@ -15,9 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @if(auth()->user()->role == 'seller')
+                    @if(auth()->user()->role != 'buyer')
                         <x-nav-link :href="route('dash_products')" :active="request()->routeIs('dash_products')">
                             {{ __('Products') }}
+                        </x-nav-link>
+                    @endif
+                    @if(auth()->user()->role == 'admin')
+                        <x-nav-link :href="route('dash_categories')" :active="request()->routeIs('dash_categories')">
+                            {{ __('Categories') }}
                         </x-nav-link>
                     @endif
                 </div>

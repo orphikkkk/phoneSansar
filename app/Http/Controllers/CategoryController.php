@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -25,18 +26,38 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreCategoryRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required'],
+            'icon' => ['required']
+        ]);
+        $newCategory = new Category();
+        if($request->hasFile('icon')){
+            $request->validate([
+                'icon' =>'image|mimes:jpeg,bmp,png,jpg'
+            ]);
+            $imageName = 'brand_'. Str::studly($request->get('name')) . '.' .$request->file('icon')->extension();
+            $request->file('icon')->move(public_path('images/brands'), $imageName);
+            $newCategory->icon = $imageName;
+        }
+
+        $newCategory->name = $request->get('name');
+        $newCategory->slug = Str::slug($request->get('name'));
+        $newCategory->description = $request->get('description');;
+        $newCategory->save();
+
+        return redirect('/dashboard/categories');
     }
 
     /**
@@ -56,9 +77,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($category)
     {
-        //
+        $cat = Category::query()->whereid($category)->first();
+        return view('categories.edit')->with(compact('cat'));
     }
 
     /**
@@ -68,9 +90,23 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request)
     {
-        //
+        $category = Category::query()->whereid($request->get('id'))->first();
+        $category->name = $request->get('name');
+        $category->slug = Str::slug($request->get('name'));
+        $category->description = $request->get('description');
+        if($request->hasFile('icon')){
+            $request->validate([
+                'icon' =>'image|mimes:jpeg,bmp,png,jpg'
+            ]);
+            $imageName = 'brand_'. $request->get('name') . '.' .$request->file('icon')->extension();
+            $request->file('icon')->move(public_path('images/brands'), $imageName);
+            $category->icon = $imageName;
+        }
+        $category->save();
+
+        return redirect(url('/dashboard/categories'));
     }
 
     /**
@@ -79,8 +115,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+         $category = Category::whereid($id);
+                $category->delete();
+
+                return redirect(url('/dashboard/categories'));
     }
 }

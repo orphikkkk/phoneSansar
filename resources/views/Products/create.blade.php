@@ -7,7 +7,7 @@
     <section class="container max-w-3xl p-6 mx-auto">
 
         <article class="bg-white rounded shadow-sm border border-gray-200 p-4 lg:p-6 my-5">
-            <form action="{{route('products-store')}}" enctype="multipart/form-data" method="post">
+            <form action="{{route('products.store')}}" enctype="multipart/form-data" method="post">
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block mb-1"> Name of item </label>

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -29,14 +31,30 @@ Route::get('/dashboard/products', function () {
     return view('products.dashboard')->with(compact('products'));
 })->middleware(['auth'])->name('dash_products');
 
+Route::get('/dashboard/categories', function () {
+    $categories = Category::all();
+    return view('categories.dashboard')->with(compact('categories'));
+})->middleware(['auth'])->name('dash_categories');
+
+//Products
+Route::prefix('products')->name('products')->controller(ProductController::class)->group(function () {
+    Route::get('','index');
+    Route::get('/create', 'create')->middleware(['auth'])->name('.create');
+    Route::post('/store','store')->middleware(['auth'])->name('.store');
+    Route::get('/edit/{id}', 'edit')->middleware(['auth'])->name('.edit');
+    Route::post('/update', 'update')->middleware(['auth'])->name('.update');
+    Route::get('/destroy/{id}', 'destroy')->middleware(['auth'])->name('.destroy');
+});
+
+//Categories
+Route::prefix('categories')->name('categories')->controller(CategoryController::class)->group(function () {
+    Route::get('','index');
+    Route::get('/create', 'create')->middleware(['auth'])->name('.create');
+    Route::post('/store','store')->middleware(['auth'])->name('.store');
+    Route::get('/edit/{id}', 'edit')->middleware(['auth'])->name('.edit');
+    Route::post('/update', 'update')->middleware(['auth'])->name('.update');
+    Route::get('/destroy/{id}', 'destroy')->middleware(['auth'])->name('.destroy');
+});
 
 
-//Products Route
-Route::get('/products', [ProductController::class,'index'])->name('products');
-//Route::get('/fuckme', [ProductController::class,'dashboardProduct'])->middleware(['auth'])->name('dash_products');
-Route::get('/products/create', [ProductController::class,'create'])->middleware(['auth'])->name('products-create');
-Route::post('/products/store', [ProductController::class,'store'])->middleware(['auth'])->name('products-store');
-Route::get('products/edit/{id}', [ProductController::class,'edit'])->middleware(['auth'])->name('products.edit');
-Route::post('/products/update', [ProductController::class,'update'])->middleware(['auth'])->name('products.update');
-Route::get('/products/destroy/{id}', [ProductController::class,'destroy'])->middleware(['auth'])->name('products.destroy');
 require __DIR__.'/auth.php';
