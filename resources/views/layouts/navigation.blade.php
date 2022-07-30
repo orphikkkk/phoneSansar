@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                    <a href="{{ route('home') }}">
+                        <img src="images/logoBig.png" class="block h-10 w-auto fill-current text-gray-600" alt="Brand"/>
                     </a>
                 </div>
 
@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(auth()->user()->role == 'seller')
+                        <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
+                            {{ __('Products') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

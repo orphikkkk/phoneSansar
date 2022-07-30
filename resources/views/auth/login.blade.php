@@ -52,5 +52,13 @@
                 </x-button>
             </div>
         </form>
+            <div class="flex items-center justify-center mt-4 border-t pt-2 px-6">
+                        <span class="text-sm text-gray-600 hover:text-gray-900">{{ __('New User?') }}</span>
+                <a href="{{ route('register') }}">
+                    <x-button class="ml-3">
+                        {{ __('Register') }}
+                    </x-button>
+                </a>
+            </div>
     </x-auth-card>
 </x-guest-layout>

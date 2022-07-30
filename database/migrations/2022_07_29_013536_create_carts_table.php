@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->text("user_id");
+            $table->bigInteger("user_id")->unsigned();
             $table->longText("session_value");
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

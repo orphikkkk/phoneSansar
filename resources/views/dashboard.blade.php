@@ -9,7 +9,109 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+                    <article class="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
+
+                        <figure class="flex items-start sm:items-center">
+                            <img class="w-16 rounded-full mr-4" src="images/avatars/avatar.jpg" alt="">
+                            <figcaption>
+                                <h5 class="font-semibold text-lg">{{auth()->user()->name}}</h5>
+                                <p>
+                                    Email: <a href="mailto:{{auth()->user()->email}}">{{auth()->user()->email}}</a> |
+                                    Phone: <a href="tel:+9779861219495">+977986119495</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                        <hr class="my-4">
+
+
+                        <h3 class="text-xl font-semibold mb-5">Current orders</h3>
+
+                        <!-- item-order -->
+                        <article class="p-3 lg:p-5 mb-5 bg-white border border-blue-600 rounded-md">
+                            <header class="lg:flex justify-between mb-4">
+                                <div class="mb-4 lg:mb-0">
+                                    <p class="font-semibold">
+                                        <span>Order ID: 234 </span>
+                                        <span class="text-green-500"> • Confirmed </span>
+                                    </p>
+                                    <p class="text-gray-500"> Dec 29, Mon, 2018 </p>
+                                </div>
+                                <div>
+                                    <button class="px-3 py-1 inline-block text-sm text-red-500 border border-gray-300 rounded-md hover:text-red-500 hover:border-red-600">
+                                        Cancel order
+                                    </button>
+                                </div>
+                            </header>
+                            <div class="grid md:grid-cols-3 gap-2">
+                                <div>
+                                    <p class="text-gray-400 mb-1">Buyer Information</p>
+                                    <ul class="text-gray-600">
+                                        <li>Mike Johnatan</li>
+                                        <li>Phone: 371-295-9131</li>
+                                        <li>Email: info@mywebsite.com</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1">Purchase Address</p>
+                                    <ul class="text-gray-600">
+                                        <li>4715 Madisen Throughway</li>
+                                        <li>That street 053</li>
+                                        <li>Palo Alto, California</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1">Payment</p>
+                                    <ul class="text-gray-600">
+                                        <li>Total Fee: Rs. 412.00</li>
+                                    </ul>
+                                </div>
+                            </div> <!-- grid.// -->
+
+                            <hr class="my-4">
+
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+
+                                <figure class="flex flex-row mb-4">
+                                    <div>
+                                        <a href="#" class="block w-20 h-20 rounded border border-gray-200 overflow-hidden">
+                                            <img src="images/items/10.jpg" alt="Title">
+                                        </a>
+                                    </div>
+                                    <figcaption  class="ml-3">
+                                        <p><a href="#" class="text-gray-600 hover:text-blue-600">Travel Bag Jeans Blue Color Modern</a></p>
+                                        <p class="mt-1 font-semibold">2x = $330.00</p>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="flex flex-row mb-4">
+                                    <div>
+                                        <a href="#" class="block w-20 h-20 rounded border border-gray-200 overflow-hidden">
+                                            <img src="images/items/11.jpg" alt="Title">
+                                        </a>
+                                    </div>
+                                    <figcaption  class="ml-3">
+                                        <p><a href="#" class="text-gray-600 hover:text-blue-600">Travel Bag Jeans Blue Color Modern</a></p>
+                                        <p class="mt-1 font-semibold">1x = $120.90</p>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="flex flex-row mb-4">
+                                    <div>
+                                        <a href="#" class="block w-20 h-20 rounded border border-gray-200 overflow-hidden">
+                                            <img src="images/items/12.jpg" alt="Title">
+                                        </a>
+                                    </div>
+                                    <figcaption class="ml-3">
+                                        <p><a href="#" class="text-gray-600 hover:text-blue-600">Travel Bag Jeans Blue Color Modern</a></p>
+                                        <p class="mt-1 font-semibold">4x = $130.99</p>
+                                    </figcaption>
+                                </figure>
+                            </div> <!-- grid.// -->
+                        </article>
+                        <!-- item-order//-->
+
+                    </article> <!-- card.// -->
                 </div>
             </div>
         </div>

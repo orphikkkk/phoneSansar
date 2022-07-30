@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer');
+            $table->bigInteger('customer')->unsigned();
             $table->double("total",8,2);
             $table->text("line_items");
             $table->string("billing_name");

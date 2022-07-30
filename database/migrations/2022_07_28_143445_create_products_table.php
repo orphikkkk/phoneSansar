@@ -21,9 +21,9 @@ return new class extends Migration
             $table->text("photo")->nullable();
             $table->float("price",8,2)->nullable();
             $table->text("sku");
-            $table->integer("vendor");
+            $table->bigInteger("vendor")->unsigned();
             $table->double("average_rating",4,2)->nullable();
-            $table->integer("category_id")->nullable();
+            $table->bigInteger("category_id")->nullable()->unsigned();
 
 
             $table->foreign('vendor')->references('id')->on('users')->onDelete('cascade');
