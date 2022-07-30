@@ -49,7 +49,7 @@
                                         <span class="text-xl font-semibold text-black">Rs. {{$pro->price}}</span>
                                     </p>
                                     <div class="my-3">
-                                        <a class="px-4 py-2 inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700" href="#"> Buy now </a>
+                                        <a class="px-4 py-2 inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700" href="/cart/add/{{$pro->id}}"> Buy now </a>
                                     </div>
                                 </div>
                             </div> <!-- col.// -->

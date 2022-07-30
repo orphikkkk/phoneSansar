@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
 use App\Models\Cart;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -15,7 +16,11 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $cart = Cart::whereuser_id(auth()->id())->first();
+        if (!$cart)
+            return back();
+        $product = json_decode($cart->session_value);
+        return view('cart')->with(compact('cart','product'));
     }
 
     /**
@@ -23,9 +28,23 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $product = Product::whereid($id)->first();
+        $userId = auth()->id();
+        $productInfo = [
+            'id' => $id,
+            'name'=>$product->name,
+            'price'=>$product->price,
+            'photo'=>$product->photo
+        ];
+        $session_value = json_encode($productInfo);
+        $cart = Cart::updateOrCreate(
+            ['user_id' => auth()->id()],
+            ['session_value' => $session_value]
+        );
+
+        return redirect(url('cart'));
     }
 
     /**
@@ -79,8 +98,11 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy()
     {
-        //
+        $cart = Cart::whereuser_id(auth()->id());
+        $cart->delete();
+
+        return redirect(url('/products'));
     }
 }

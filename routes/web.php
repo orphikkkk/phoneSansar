@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $products = Product::limit(4)->get();
+    return view('welcome')->with(compact('products'));
 })->name('home');
 
 Route::get('/dashboard', function () {
@@ -55,6 +57,12 @@ Route::prefix('categories')->name('categories')->controller(CategoryController::
     Route::post('/update', 'update')->middleware(['auth'])->name('.update');
     Route::get('/destroy/{id}', 'destroy')->middleware(['auth'])->name('.destroy');
 });
+
+
+//Cart
+Route::get('/cart',[CartController::class,'index'])->middleware(['auth'])->name('cart');
+Route::get('/cart/add/{id}',[CartController::class,'create'])->middleware(['auth'])->name('cart.add');
+Route::get('/cart/delete/',[CartController::class,'destroy'])->middleware(['auth'])->name('cart.delete');
 
 
 require __DIR__.'/auth.php';
