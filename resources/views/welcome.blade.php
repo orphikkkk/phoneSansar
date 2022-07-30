@@ -9,7 +9,7 @@
                         Best products &amp; <br>brands in our store
                     </h1>
                     <p class="text-lg text-white font-normal mt-4 mb-6">
-                        Trendy Products, Factory Prices, Excellent Service
+                        Buying and Selling Phones has Never Been Easier.
                     </p>
                     <div>
                         <a class="px-4 py-2 inline-block font-semibold bg-yellow-500 text-white border border-transparent rounded-md hover:bg-yellow-600"
@@ -32,7 +32,7 @@
     <!-- SECTION-CONTENT -->
     <section class="bg-gray-100 py-12">
         <div class="container max-w-screen-xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8">Featured products</h2>
+            <h2 class="text-3xl font-bold mb-8">Featured <pr></pr>oducts</h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     @foreach($products as $pro)
@@ -93,22 +93,7 @@
 							</span>
                         </div>
                         <figcaption>
-                            <h5 class="font-semibold">Best quality</h5>
-                            <p class="text-gray-500"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            </p>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div>
-                    <figure class="flex mb-4">
-                        <div class="flex-shrink-0 mr-3">
-							<span
-                                class="block w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
-								<i class="fa fa-plane text-2xl"></i>
-							</span>
-                        </div>
-                        <figcaption>
-                            <h5 class="font-semibold">Worldwide shipping</h5>
+                            <h5 class="font-semibold">Trusted Sellers</h5>
                             <p class="text-gray-500"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             </p>
                         </figcaption>
@@ -124,36 +109,6 @@
                         </div>
                         <figcaption>
                             <h5 class="font-semibold">Customer satisfaction</h5>
-                            <p class="text-gray-500"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            </p>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div>
-                    <figure class="flex mb-4">
-                        <div class="flex-shrink-0 mr-3">
-							<span
-                                class="block w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
-								<i class="fa fa-thumbs-up text-2xl"></i>
-							</span>
-                        </div>
-                        <figcaption>
-                            <h5 class="font-semibold">Happy customers</h5>
-                            <p class="text-gray-500"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            </p>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div>
-                    <figure class="flex mb-4">
-                        <div class="flex-shrink-0 mr-3">
-							<span
-                                class="block w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
-								<i class="fa fa-box text-2xl"></i>
-							</span>
-                        </div>
-                        <figcaption>
-                            <h5 class="font-semibold">Thousand items</h5>
                             <p class="text-gray-500"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             </p>
                         </figcaption>

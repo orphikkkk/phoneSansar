@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -67,9 +68,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        $brand = Category::whereid($id)->first();
+        $products = Product::query()->wherecategory_id($id)->get();
+
+        return view('categories.show')->with(compact('brand','products'));
     }
 
     /**

@@ -3,7 +3,7 @@
     <section class="py-5 sm:py-7 bg-blue-100">
         <div class="container max-w-screen-xl mx-auto px-4">
             <!-- breadcrumbs start -->
-            <h2 class="text-3xl font-semibold mb-2">All Categories</h2>
+            <h2 class="text-3xl font-semibold mb-2">All Brands</h2>
         </div><!-- /.container -->
     </section>
     <!--  PAGE HEADER .//END  -->
@@ -20,11 +20,11 @@
                             <div>
                                 <!-- COMPONENT: PRODUCT CARD -->
                                 <article class="shadow-sm rounded bg-white border border-gray-200 h-44">
-                                    <a href="#" class="block relative p-1">
+                                    <a href="/categories/show/{{$cat->id}}" class="block relative p-1">
                                         <img src="{{asset('images/brands/'.$cat->icon)}}" class="mx-auto w-auto object-scale-down h-28" alt="Product title here">
                                     </a>
                                     <div class="p-4 border-t border-t-gray-200">
-                                        <a href="#" class="block text-gray-600 mb-3 hover:text-blue-500">
+                                        <a href="/categories/show/{{$cat->id}}" class="block text-gray-600 mb-3 hover:text-blue-500">
                                             {{$cat->name}}
                                         </a>
                                     </div>

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $products = Product::limit(4)->get();
+    $products = Product::inRandomOrder()->limit(4)->get();
     return view('welcome')->with(compact('products'));
 })->name('home');
 
@@ -41,6 +41,7 @@ Route::get('/dashboard/categories', function () {
 //Products
 Route::prefix('products')->name('products')->controller(ProductController::class)->group(function () {
     Route::get('','index');
+    Route::get('/show/{id}', 'show')->middleware(['auth'])->name('.show');
     Route::get('/create', 'create')->middleware(['auth'])->name('.create');
     Route::post('/store','store')->middleware(['auth'])->name('.store');
     Route::get('/edit/{id}', 'edit')->middleware(['auth'])->name('.edit');
@@ -51,6 +52,7 @@ Route::prefix('products')->name('products')->controller(ProductController::class
 //Categories
 Route::prefix('categories')->name('categories')->controller(CategoryController::class)->group(function () {
     Route::get('','index');
+    Route::get('/show/{id}', 'show')->middleware(['auth'])->name('.show');
     Route::get('/create', 'create')->middleware(['auth'])->name('.create');
     Route::post('/store','store')->middleware(['auth'])->name('.store');
     Route::get('/edit/{id}', 'edit')->middleware(['auth'])->name('.edit');
