@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <!-- Icons -->
-    <link href="fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet" />
+    <link href="/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet" />
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -21,7 +21,7 @@
         <div class="flex flex-wrap items-center">
             <!-- Brand -->
             <div class="flex-shrink-0 mr-5">
-                <a href="#"> <img src="images/logoBig.png" class="h-10" height="40" alt="Brand"/> </a>
+                <a href="#"> <img src="/images/logoBig.png" class="h-10" height="40" alt="Brand"/> </a>
             </div>
             <!-- Brand .//end -->
 
@@ -100,7 +100,7 @@
 
             <div class="flex flex-wrap">
                 <aside class="w-full md:w-1/3 lg:w-1/4 mb-5">
-                    <img src="images/logo-white.png" class="h-12" alt="Company name">
+                    <img src="/images/logo-white.png" class="h-12" alt="Company name">
                     <p class="my-4">
                         Phone Sansar. <br> © 2022 orphikk.code <br>
                         All rights reserved.
@@ -199,7 +199,7 @@
         <div class="container max-w-screen-xl mx-auto px-4">
             <div class="lg:flex justify-between">
                 <div class="mb-3">
-                    <img src="images/misc/payments.png" height="24" class="h-6" alt="Payment methods">
+                    <img src="/images/misc/payments.png" height="24" class="h-6" alt="Payment methods">
                 </div> <!-- col .// -->
                 <div class="space-x-6">
                     <nav class="text-sm space-x-4">

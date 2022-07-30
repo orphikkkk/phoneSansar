@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <img src="images/logoBig.png" class="block h-10 w-auto fill-current text-gray-600" alt="Brand"/>
+                        <img src="{{asset('images/logoBig.png')}}" class="block h-10 w-auto fill-current text-gray-600" alt="Brand"/>
                     </a>
                 </div>
 
@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if(auth()->user()->role == 'seller')
-                        <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
+                        <x-nav-link :href="route('dash_products')" :active="request()->routeIs('dash_products')">
                             {{ __('Products') }}
                         </x-nav-link>
                     @endif

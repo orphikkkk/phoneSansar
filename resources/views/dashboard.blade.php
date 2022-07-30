@@ -12,7 +12,7 @@
                     <article class="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
 
                         <figure class="flex items-start sm:items-center">
-                            <img class="w-16 rounded-full mr-4" src="images/avatars/avatar.jpg" alt="">
+                            <img class="w-16 rounded-full mr-4" src="{{asset('images/avatars/avatar.jpg')}}" alt="">
                             <figcaption>
                                 <h5 class="font-semibold text-lg">{{auth()->user()->name}}</h5>
                                 <p>
