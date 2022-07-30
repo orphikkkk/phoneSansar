@@ -80,10 +80,10 @@
         <div class="hidden lg:flex flex-1 items-center py-1">
             <a
                 @class([
-                'px-3 py-2 rounded-md hover:bg-gray-100' => !(request()->routeIs('products')),
-                'px-3 py-2 hover:bg-gray-100 border-b border-blue-600'=>(request()->routeIs('products'))
+                'px-3 py-2 rounded-md hover:bg-gray-100' => !(request()->routeIs('categories')),
+                'px-3 py-2 hover:bg-gray-100 border-b border-blue-600'=>(request()->routeIs('categories'))
                 ])
-                href="{{route('products')}}"> Categories </a>
+                href="{{route('categories')}}"> Categories </a>
             <a
                 @class([
                 'px-3 py-2 rounded-md hover:bg-gray-100' => !(request()->routeIs('products')),
