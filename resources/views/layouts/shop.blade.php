@@ -54,7 +54,7 @@
                     </a>
                 @endif
                 <a class="px-3 py-2 inline-block text-center text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:border-gray-300"
-                   href="#">
+                   href="/cart">
                     <i class="text-gray-400 w-5 fa fa-shopping-cart"></i>
                     <span class="hidden lg:inline ml-1">My cart</span>
                 </a>
