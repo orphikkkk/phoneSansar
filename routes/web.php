@@ -38,4 +38,5 @@ Route::get('/products/create', [ProductController::class,'create'])->middleware(
 Route::post('/products/store', [ProductController::class,'store'])->middleware(['auth'])->name('products-store');
 Route::get('products/edit/{id}', [ProductController::class,'edit'])->middleware(['auth'])->name('products.edit');
 Route::post('/products/update', [ProductController::class,'update'])->middleware(['auth'])->name('products.update');
+Route::get('/products/destroy/{id}', [ProductController::class,'destroy'])->middleware(['auth'])->name('products.destroy');
 require __DIR__.'/auth.php';

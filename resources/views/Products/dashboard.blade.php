@@ -57,7 +57,8 @@
                                             <span class="text-xl font-semibold text-black">Rs. {{$pro->price}}</span>
                                         </p>
                                         <div class="my-3">
-                                            <a class="px-4 py-2 inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700" href="/products/edit/{{$pro->id}}"> Edit </a>
+                                            <a class="px-4 py-2 inline-block text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-700" href="/products/edit/{{$pro->id}}"> Edit </a>
+                                            <a class="px-4 py-2 inline-block text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700" href="/products/destroy/{{$pro->id}}"> Delete </a>
                                         </div>
                                     </div>
                                 </div> <!-- col.// -->
