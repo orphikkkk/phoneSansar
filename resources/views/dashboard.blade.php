@@ -28,16 +28,16 @@
 
 
                             <h3 class="text-xl font-semibold mb-5">Current orders</h3>
-
+                            @foreach($orders as $ord)
                             <!-- item-order -->
                             <article class="p-3 lg:p-5 mb-5 bg-white border border-blue-600 rounded-md">
                                 <header class="lg:flex justify-between mb-4">
                                     <div class="mb-4 lg:mb-0">
                                         <p class="font-semibold">
-                                            <span>Order ID: 234 </span>
-                                            <span class="text-green-500"> • Confirmed </span>
+                                            <span>Order ID: {{$ord->id}} </span>
+                                            <span class="text-green-500"> • {{$ord->status}} </span>
                                         </p>
-                                        <p class="text-gray-500"> Dec 29, Mon, 2018 </p>
+                                        <p class="text-gray-500"> {{$ord->created_at}} </p>
                                     </div>
                                     <div>
                                         <button
@@ -50,23 +50,22 @@
                                     <div>
                                         <p class="text-gray-400 mb-1">Buyer Information</p>
                                         <ul class="text-gray-600">
-                                            <li>Mike Johnatan</li>
-                                            <li>Phone: 371-295-9131</li>
-                                            <li>Email: info@mywebsite.com</li>
+                                            <li>{{$ord->billing_name}}</li>
+                                            <li>Phone: {{$ord->billing_phone}}</li>
+                                            <li>Email: {{$ord->billing_email}}</li>
                                         </ul>
                                     </div>
                                     <div>
                                         <p class="text-gray-400 mb-1">Purchase Address</p>
                                         <ul class="text-gray-600">
-                                            <li>4715 Madisen Throughway</li>
-                                            <li>That street 053</li>
-                                            <li>Palo Alto, California</li>
+                                            <li>{{$ord->billing_street}}</li>
+                                            <li>{{$ord->billing_district}}, Nepal</li>
                                         </ul>
                                     </div>
                                     <div>
                                         <p class="text-gray-400 mb-1">Payment</p>
                                         <ul class="text-gray-600">
-                                            <li>Total Fee: Rs. 412.00</li>
+                                            <li>Total Fee: Rs. {{$ord->total}}</li>
                                         </ul>
                                     </div>
                                 </div> <!-- grid.// -->
@@ -74,52 +73,27 @@
                                 <hr class="my-4">
 
                                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+                                    @php
+                                        $productDetails = json_decode($ord->line_items);
+                                    @endphp
 
                                     <figure class="flex flex-row mb-4">
                                         <div>
                                             <a href="#"
                                                class="block w-20 h-20 rounded border border-gray-200 overflow-hidden">
-                                                <img src="images/items/10.jpg" alt="Title">
+                                                <img class="h-20" src="{{asset('images/product/'.$productDetails->photo)}}" alt="Title">
                                             </a>
                                         </div>
                                         <figcaption class="ml-3">
-                                            <p><a href="#" class="text-gray-600 hover:text-blue-600">Travel Bag Jeans
-                                                    Blue Color Modern</a></p>
-                                            <p class="mt-1 font-semibold">2x = $330.00</p>
+                                            <p><a href="#" class="text-gray-600 hover:text-blue-600">{{$productDetails->name}}</a></p>
+                                            <p class="mt-1 font-semibold">Rs. {{$productDetails->price}}</p>
                                         </figcaption>
                                     </figure>
 
-                                    <figure class="flex flex-row mb-4">
-                                        <div>
-                                            <a href="#"
-                                               class="block w-20 h-20 rounded border border-gray-200 overflow-hidden">
-                                                <img src="images/items/11.jpg" alt="Title">
-                                            </a>
-                                        </div>
-                                        <figcaption class="ml-3">
-                                            <p><a href="#" class="text-gray-600 hover:text-blue-600">Travel Bag Jeans
-                                                    Blue Color Modern</a></p>
-                                            <p class="mt-1 font-semibold">1x = $120.90</p>
-                                        </figcaption>
-                                    </figure>
-
-                                    <figure class="flex flex-row mb-4">
-                                        <div>
-                                            <a href="#"
-                                               class="block w-20 h-20 rounded border border-gray-200 overflow-hidden">
-                                                <img src="images/items/12.jpg" alt="Title">
-                                            </a>
-                                        </div>
-                                        <figcaption class="ml-3">
-                                            <p><a href="#" class="text-gray-600 hover:text-blue-600">Travel Bag Jeans
-                                                    Blue Color Modern</a></p>
-                                            <p class="mt-1 font-semibold">4x = $130.99</p>
-                                        </figcaption>
-                                    </figure>
                                 </div> <!-- grid.// -->
                             </article>
+                            @endforeach
                             <!-- item-order//-->
-
                         </article> <!-- card.// -->
                     </div>
                 </div>

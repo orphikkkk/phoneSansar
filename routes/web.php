@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +26,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $orders = Order::wherecustomer(auth()->id())->get();
+    return view('dashboard')->with(compact('orders'));
 })->middleware(['auth'])->name('dashboard');
 
 
@@ -67,5 +70,14 @@ Route::get('/cart',[CartController::class,'index'])->middleware(['auth'])->name(
 Route::get('/cart/add/{id}',[CartController::class,'create'])->middleware(['auth'])->name('cart.add');
 Route::get('/cart/delete/',[CartController::class,'destroy'])->middleware(['auth'])->name('cart.delete');
 
+
+//Orders
+Route::prefix('order')->name('orders')->controller(OrderController::class)->group(function () {
+    Route::get('', 'create')->middleware(['auth']);
+    Route::post('/store','store')->middleware(['auth'])->name('.store');
+    Route::get('/edit/{id}', 'edit')->middleware(['auth'])->name('.edit');
+    Route::post('/update', 'update')->middleware(['auth'])->name('.update');
+    Route::get('/destroy/{id}', 'destroy')->middleware(['auth'])->name('.destroy');
+});
 
 require __DIR__.'/auth.php';
