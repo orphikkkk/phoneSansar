@@ -152,6 +152,12 @@ class OrderController extends Controller
         $order->seller_approve = $approve;
         $order->save();
 
+        $session_value =json_decode($order->line_items);
+        $id= $session_value->id;
+        $vendorId = Product::whereid($id)->value('vendor');
+
+        $user = User::whereid($vendorId)->increment('rating');
+
         return back();
     }
 

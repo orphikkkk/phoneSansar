@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
@@ -20,10 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $products = Product::inRandomOrder()->wherepublished(1)->limit(4)->get();
-    return view('welcome')->with(compact('products'));
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/dashboard', function () {
     $orders = Order::wherecustomer(auth()->id())->latest()->get();

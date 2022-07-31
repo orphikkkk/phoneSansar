@@ -52,13 +52,16 @@
                                                     Cancel order
                                                 </a>
                                                 @if($ord->status == 'completed')
-                                                    <a href="/order/sellerApprove/{{$ord->id}}"
-                                                       @class([
-                                                     "px-4 py-1 inline-block text-blue-600 border border-blue-600 bg-grey-600 rounded-md hover:text-white hover:bg-blue-700" => !$ord->seller_approve,
-                                                     "px-4 py-1 inline-block text-white border border-blue-600 bg-blue-600 rounded-md hover:border-blue-600 hover:text-blue-600 hover:bg-white" => $ord->seller_approve,
-                                                     ]);
-                                                >
-                                                    <i class="fa-solid fa-thumbs-up"></i></a>
+                                                    @if(!$ord->seller_approve)
+                                                        <a href="/order/sellerApprove/{{$ord->id}}">
+                                                    @endif
+                                                        <i  @class([
+                                                     "fa-solid fa-thumbs-up px-4 py-1 inline-block text-blue-600 border border-blue-600 bg-grey-600 rounded-md hover:text-white hover:bg-blue-700" => !$ord->seller_approve,
+                                                     "fa-solid fa-thumbs-up px-4 py-1 inline-block text-white border border-blue-600 bg-blue-600 rounded-md" => $ord->seller_approve,
+                                                     ])></i>
+                                                    @if(!$ord->seller_approve)
+                                                        </a>
+                                                    @endif
                                                 @endif
                                             </div>
                                         @endif
