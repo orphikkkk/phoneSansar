@@ -25,6 +25,11 @@
                             {{ __('Categories') }}
                         </x-nav-link>
                     @endif
+                    @if(auth()->user()->role != 'buyer')
+                        <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                            {{ __('Orders') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

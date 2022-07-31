@@ -26,11 +26,11 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="sku" class="block mb-1"> Sku </label>
-                    <input type="text" name="sku" id="sku"
+                    <label for="sku" class="block mb-1"> Location </label>
+                    <input type="text" name="location" id="location"
                            class="appearance-none border border-gray-200 bg-gray-100 rounded-md py-2 px-3 hover:border-gray-400 focus:outline-none focus:border-gray-400 w-full"
                            placeholder="ip-200"
-                            value="{{$pro->sku}}"/>
+                            value="{{$pro->location}}"/>
                 </div>
                 <div class="md:w-1/4">
                     <img class="mx-auto h-40 object-scale-down" src="{{asset('images/product/'.$pro->photo)}}" alt="Product name text">

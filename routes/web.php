@@ -21,13 +21,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $products = Product::inRandomOrder()->limit(4)->get();
+    $products = Product::inRandomOrder()->wherepublished(1)->limit(4)->get();
     return view('welcome')->with(compact('products'));
 })->name('home');
 
 Route::get('/dashboard', function () {
-    $orders = Order::wherecustomer(auth()->id())->get();
-    return view('dashboard')->with(compact('orders'));
+    $orders = Order::wherecustomer(auth()->id())->latest()->get();
+
+    $dashDetails = [
+      'orders'=> Order::count(),
+      'products'=> Product::count(),
+        'total'=> Order::all()->sum('total'),
+        'buyers'=> \App\Models\User::whererole('buyer')->count(),
+        'sellers'=> \App\Models\User::whererole('seller')->count()
+    ];
+
+    return view('dashboard')->with(compact('orders','dashDetails'));
 })->middleware(['auth'])->name('dashboard');
 
 
@@ -73,10 +82,14 @@ Route::get('/cart/delete/',[CartController::class,'destroy'])->middleware(['auth
 
 //Orders
 Route::prefix('order')->name('orders')->controller(OrderController::class)->group(function () {
+    Route::get('/index', 'index')->name('.index');
     Route::get('', 'create')->middleware(['auth']);
     Route::post('/store','store')->middleware(['auth'])->name('.store');
     Route::get('/edit/{id}', 'edit')->middleware(['auth'])->name('.edit');
     Route::post('/update', 'update')->middleware(['auth'])->name('.update');
+    Route::get('/cancel/{id}', 'cancel')->middleware(['auth'])->name('.cancel');
+    Route::get('/complete/{id}', 'complete')->middleware(['auth'])->name('.complete');
+    Route::get('/sellerApprove/{id}', 'approve')->middleware(['auth'])->name('.approve');
     Route::get('/destroy/{id}', 'destroy')->middleware(['auth'])->name('.destroy');
 });
 

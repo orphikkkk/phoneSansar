@@ -6,6 +6,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 
 class OrderController extends Controller
@@ -17,7 +18,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::query()->wherevendor(auth()->id())->pluck('id')->toArray();
+
+        $orders = Order::query();
+            if (auth()->user()->role == 'seller')
+                $orders = $orders->whereIn('line_items->id',$products);
+            $orders = $orders->latest()
+            ->get();
+
+        return view('orders.index')->with(compact('orders'));
     }
 
     /**
@@ -63,6 +72,12 @@ class OrderController extends Controller
         //Delete Cart Session
         $cart = Cart::whereuser_id(auth()->id());
         $cart->delete();
+
+
+        //Product Hide
+        $product = Product::whereid($productDetails->id)->first();
+            $product->published = 0;
+        $product->save();
 
         return redirect('/dashboard');
     }
@@ -110,6 +125,34 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function cancel($id)
+    {
+        $order = Order::whereid($id)->first();
+            $order->status = 'cancelled';
+        $order->save();
+
+        return back();
+    }
+
+    public function complete($id)
+    {
+        $order = Order::whereid($id)->first();
+        $order->status = 'completed';
+        $order->save();
+
+        return back();
+    }
+
+    public function approve($id)
+    {
+        $order = Order::whereid($id)->first();
+        $approve = ($order->seller_approve) ? 0 : 1;
+        $order->seller_approve = $approve;
+        $order->save();
+
+        return back();
     }
 
 }

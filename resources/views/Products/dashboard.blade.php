@@ -26,7 +26,7 @@
                     @foreach($products as $pro)
                         <!-- COMPONENT: PRODUCT ITEM -->
                         <article class="border border-gray-200 overflow-hidden bg-white shadow-sm rounded mb-5">
-                            <div class="flex flex-col md:flex-row">
+                            <div class="flex flex-col md:flex-row p-4">
                                 <div class="md:w-1/4">
                                     <img class="mx-auto h-40 object-scale-down" src="{{asset('images/product/'.$pro->photo)}}" alt="Product name text">
                                 </div> <!-- col.// -->
@@ -40,14 +40,18 @@
                                             <b class="text-gray-300">•</b>
                                             <span class="ml-1 text-yellow-500">{{$pro->average_rating}}</span>
                                         </div>
+                                        @php
+                                            $description = json_decode($pro->description);
+                                        @endphp
                                         <p class="text-gray-500 mb-2">
-                                            {{$pro->description}}
+                                            {{$description->description}}
+                                        </p>
+                                        <p class="text-gray-500 mb-2">
+                                            Location: {{$description->location}}
                                         </p>
                                         <p class="space-y-2">
-                                            <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Leather  </span>
-                                            <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Pink Color </span>
-                                            <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Retina Screen </span>
-                                            <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Original </span>
+                                            <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Condition: {{$description->condition}}  </span>
+                                            <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Used For: {{$description->usedFor}} </span>
                                         </p>
                                     </div>
                                 </div> <!-- col.// -->
@@ -56,7 +60,7 @@
                                         <p>
                                             <span class="text-xl font-semibold text-black">Rs. {{$pro->price}}</span>
                                         </p>
-                                        <div class="my-3">
+                                        <div class="flex flex-rows-flow gap-1 mt-2">
                                             <a class="px-4 py-2 inline-block text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-700" href="/products/edit/{{$pro->id}}"> Edit </a>
                                             <a class="px-4 py-2 inline-block text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700" href="/products/destroy/{{$pro->id}}"> Delete </a>
                                         </div>

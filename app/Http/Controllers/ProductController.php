@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::wherepublished(1)->get();
             return view('Products.index')->with(compact('products'));
     }
 
@@ -54,7 +54,15 @@ class ProductController extends Controller
             'description' => ['required'],
             'price' => ['required']
         ]);
-        $publish = ($request->pulish == 'on') ? 1 :0;
+
+        $productDetails = [
+          'condition'=>$request->condition,
+          'location'=>$request->location,
+          'usedFor'=>$request->usedFor,
+        'description'=>$request->description
+        ];
+        $description = json_encode($productDetails);
+        $publish = ($request->publish == 'on') ? 1 :0;
         $newProduct = new Product();
         if($request->hasFile('photo')){
             $request->validate([
@@ -67,11 +75,11 @@ class ProductController extends Controller
 
         $newProduct->name = $request->get('name');
         $newProduct->slug = Str::slug($request->get('name'));
-        $newProduct->description = $request->get('description');
+        $newProduct->description = $description;
         $newProduct->price = $request->get('price');
         $newProduct->category_id = $request->get('brand');
         $newProduct->vendor = auth()->id();
-        $newProduct->sku = $request->get('sku');
+        $newProduct->location = $request->get('location');
         $newProduct->published = $publish;
         $newProduct->save();
 
@@ -120,7 +128,7 @@ class ProductController extends Controller
             $product->price = $request->get('price');
             $product->category_id = $request->get('brand');
             $product->vendor = auth()->id();
-            $product->sku = $request->get('sku');
+            $product->location = $request->get('location');
             $product->published = $publish;
         if($request->hasFile('photo')){
             $request->validate([

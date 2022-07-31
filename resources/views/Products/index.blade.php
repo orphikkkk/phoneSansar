@@ -13,7 +13,7 @@
         <div class="container max-w-screen-xl mx-auto px-4">
 
             <div class="flex flex-col md:flex-row mx-4">
-                <main  class="px-3">
+                <main  class="grid grid-cols-2 gap-4 px-3">
 
                     @foreach($products as $pro)
                     <!-- COMPONENT: PRODUCT ITEM -->
@@ -32,14 +32,18 @@
                                         <b class="text-gray-300">•</b>
                                         <span class="ml-1 text-yellow-500">{{$pro->average_rating}}</span>
                                     </div>
+                                    @php
+                                        $description = json_decode($pro->description);
+                                    @endphp
                                     <p class="text-gray-500 mb-2">
-                                        {{$pro->description}}
+                                        {{$description->description}}
+                                    </p>
+                                    <p class="text-gray-500 mb-2">
+                                        Location: {{$description->location}}
                                     </p>
                                     <p class="space-y-2">
-                                        <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Leather  </span>
-                                        <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Pink Color </span>
-                                        <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Retina Screen </span>
-                                        <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Original </span>
+                                        <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Condition: {{$description->condition}}  </span>
+                                        <span class="inline-block px-3 text-sm py-1 border border-gray-300 text-gray-400 rounded-full"> Used For: {{$description->usedFor}} </span>
                                     </p>
                                 </div>
                             </div> <!-- col.// -->

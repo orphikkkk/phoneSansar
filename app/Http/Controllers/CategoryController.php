@@ -71,7 +71,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $brand = Category::whereid($id)->first();
-        $products = Product::query()->wherecategory_id($id)->get();
+        $products = Product::query()->wherecategory_id($id)->wherepublished(1)->get();
 
         return view('categories.show')->with(compact('brand','products'));
     }
