@@ -10,6 +10,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link href="/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet" />
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -28,13 +29,15 @@
             <!-- Search -->
             <div
                 class="flex flex-nowrap items-center w-full order-last md:order-none mt-5 md:mt-0 md:w-2/4 lg:w-2/4">
+            <form action="{{ route('products.search') }}">
                 <input
                     class="flex-grow appearance-none border border-gray-200 bg-gray-100 rounded-md mr-2 py-2 px-3 hover:border-gray-400 focus:outline-none focus:border-gray-400"
-                    type="text" placeholder="Search">
-                <button type="button"
+                    type="text" name="search" placeholder="Search">
+                <button type="submit"
                         class="px-4 py-2 inline-block text-white border border-transparent bg-blue-600 rounded-md hover:bg-blue-700">
                     <i class="fa fa-search"></i>
                 </button>
+            </form>
             </div>
             <!-- Search .//end -->
 

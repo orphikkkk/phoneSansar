@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use http\Env\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -146,5 +147,13 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect(url('/dashboard/products'));
+    }
+
+    public function search(\Illuminate\Http\Request $request)
+    {
+        $products = Product::query()
+        ->where('name','like','%'.$request->search.'%')
+            ->get();
+        return view('products.search')->with(compact('products'));
     }
 }

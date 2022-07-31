@@ -32,7 +32,7 @@
     <!-- SECTION-CONTENT -->
     <section class="bg-gray-100 py-12">
         <div class="container max-w-screen-xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8">Featured <pr></pr>oducts</h2>
+            <h2 class="text-3xl font-bold mb-8">Featured <pr></pr>Products</h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     @foreach($products as $pro)

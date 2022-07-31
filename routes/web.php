@@ -47,12 +47,13 @@ Route::prefix('products')->name('products')->controller(ProductController::class
     Route::get('/edit/{id}', 'edit')->middleware(['auth'])->name('.edit');
     Route::post('/update', 'update')->middleware(['auth'])->name('.update');
     Route::get('/destroy/{id}', 'destroy')->middleware(['auth'])->name('.destroy');
+    Route::get('/search', 'search')->name('.search');
 });
 
 //Categories
 Route::prefix('categories')->name('categories')->controller(CategoryController::class)->group(function () {
     Route::get('','index');
-    Route::get('/show/{id}', 'show')->middleware(['auth'])->name('.show');
+    Route::get('/show/{id}', 'show')->name('.show');
     Route::get('/create', 'create')->middleware(['auth'])->name('.create');
     Route::post('/store','store')->middleware(['auth'])->name('.store');
     Route::get('/edit/{id}', 'edit')->middleware(['auth'])->name('.edit');
